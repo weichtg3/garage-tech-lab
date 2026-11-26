@@ -1,6 +1,7 @@
 ---
 title: "01 · Electrical Fundamentals"
 sidebar_position: 2
+slug: /01-electrical-fundamentals
 ---
 # Week 1 — Electrical Fundamentals
 

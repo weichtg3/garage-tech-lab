@@ -9,3 +9,5 @@
 - Do not publish personal GPS history or credentials. Prefer simulations and current-limited isolated bench experiments.
 - Keep documentation as Markdown/MDX in docs/, diagrams as SVG or Mermaid, widgets as React components.
 - Preserve compatible Docusaurus 3 syntax; run npm ci and npm run build before merging.
+
+- Use Node.js 24 for all development and CI. Keep .nvmrc and package.json engines aligned.
