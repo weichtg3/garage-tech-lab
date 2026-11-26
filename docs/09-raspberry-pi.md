@@ -1,48 +1,69 @@
 ---
 title: "09 · Raspberry Pi & GPIO"
 sidebar_position: 10
+slug: /09-raspberry-pi
 ---
 # Week 9 — Raspberry Pi & GPIO
 
-**Time:** 3–5 hours · **Goal:** GPIO logic levels, UART, I²C, SPI, ADC concepts and opto-isolation.
+**Estimated time:** 50 minutes reading · 100 minutes practical work · 35 minutes review. Estimates are for planning, not measured completion times.
 
-## What you'll learn
+## Lesson 9.1 — Core concepts
 
-GPIO logic levels, UART, I²C, SPI, ADC concepts and opto-isolation. Begin by identifying the source, load, return path and protective devices in every circuit. Draw the circuit before touching any wires.
+A Raspberry Pi is a Linux computer; GPIO uses 3.3V logic and is not an automotive interface. GPIO numbering may refer to physical header positions or BCM numbers. UART uses asynchronous TX/RX, I²C uses addressed shared clock/data, SPI uses clock and chip select. Standard Pi GPIO has no general-purpose analog input; use a suitable ADC.
 
-## Step-by-step bench lab
+## Lesson 9.2 — Applying the concepts
 
-1. Prepare a current-limited low-voltage power supply and verify its output with a meter.
-2. Draw the expected circuit, labeling source, load, return and measurement points.
-3. Blink a 3.3V logic LED via a correctly rated resistor; read a simple digital sensor.
-4. Record expected and actual observations. Explain any difference.
-5. De-energize, disconnect, and restore your workspace.
+Logic level, power voltage and current rating are different. An ADC maps an analog range to digital codes. Isolation or protected conditioning is necessary for vehicle signals. A divider alone does not protect against all automotive transients. Identify board model and existing GPS/camera pin usage before attaching anything.
 
-## Compare the vehicles
+## Lesson 9.3 — Worked example
 
-Identify your Pi model, GPIO header voltage and GPS/camera module interfaces.
+A 10-bit ADC spanning 0–3.3V has ideal step size about 3.3/1024=3.22mV. A 3.3V output driving a 2V LED through 1kΩ draws about 1.3mA.
 
-The **2014 F-150** adds body control electronics and modern interfaces; the **1997 Sportster 883 Hugger** provides a more direct example of switches, wiring and charging components.
 
-## Questions to answer
 
-1. Where does the current return to the source?
-2. What would happen if the ground connection developed excessive resistance?
-3. Which measurement could confirm your theory without modifying factory wiring?
-4. What fuse, conductor and connector constraints would matter in a real installation?
+## Practical lab
 
-## Safety and specification checks
+**Materials:** Existing Pi, correct power supply, monitor or SSH, 1kΩ resistor, LED, board documentation; optional GPIO library supported by OS.
 
-:::warning
-Pi GPIO is 3.3V logic: never connect 12V directly; power vehicle-facing interfaces through rated protection. Any model-year wiring color, connector pinout, or component rating must be verified using factory service information.
+Boot the Pi with its normal supply. Run cat /proc/device-tree/model and cat /etc/os-release. Identify occupied GPS/camera interfaces and locate a verified unused GPIO and ground in the board pinout. Shut down and disconnect power before wiring an LED and 1kΩ resistor. Use a supported GPIO library to toggle the selected output slowly, then clean up and shut down. If pinout/library compatibility is uncertain, use a software-only mock instead.
+
+**Lab record:** Write down your prediction, actual result, measurement units, instrument or software used, and one explanation for any discrepancy. Repeat with one changed input and compare. Keep personal data local.
+
+## F-150 assignment
+
+Design a protected interface block for future OBD adapter data; keep Pi separate from vehicle wiring for now.
+
+## Sportster assignment
+
+Design an external sensor collector with protected supply and signal conditioning; no direct connection to ignition or stator.
+
+## Knowledge check
+
+<details>
+  <summary>1. Can a 12V wire connect to GPIO?</summary>
+  <p>No.</p>
+</details>
+
+<details>
+  <summary>2. Why use an ADC?</summary>
+  <p>To convert an analog signal into digital measurements.</p>
+</details>
+
+<details>
+  <summary>3. Why identify the Pi model first?</summary>
+  <p>Pinout, camera tools, OS and libraries vary.</p>
+</details>
+
+## Completion criteria
+
+- [ ] Explain the two core lessons without notes.
+- [ ] Reproduce the worked example and explain its assumptions.
+- [ ] Complete the practical lab or document why hardware compatibility prevents it.
+- [ ] Complete both vehicle assignments as observations or paper designs.
+- [ ] Answer all knowledge checks and correct any misunderstandings.
+
+:::warning Safety boundary
+Use current-limited bench circuits first. Verify actual vehicle wiring, component ratings and service procedures before installation. Never measure resistance on energized wiring, place a current-mode meter across a battery, connect vehicle voltage directly to GPIO, or probe SRS or live ignition high-voltage circuits.
 :::
 
-## Completion
-
-- [ ] I can explain the core concept in my own words.
-- [ ] I drew the relevant circuit.
-- [ ] I performed the safe bench lab.
-- [ ] I documented a comparison between the two vehicles.
-- [ ] I answered the four questions above.
-
-Next: consult the [full curriculum](./overview.md) and [Garage Labs](./labs/overview.md).
+[Return to curriculum](./overview.md)

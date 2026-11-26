@@ -5,93 +5,65 @@ slug: /01-electrical-fundamentals
 ---
 # Week 1 — Electrical Fundamentals
 
-**Time:** 3–4 hours · **Outcome:** confidently explain voltage, current, resistance, power, AC/DC and closed current paths.
+**Estimated time:** 45 minutes reading · 90 minutes practical work · 30 minutes review. Estimates are for planning, not measured completion times.
 
-## 1. Voltage, current, resistance
+## Lesson 1.1 — Core concepts
 
-Think of voltage as the electrical **potential difference** between two points, current as the **rate at which charge flows**, and resistance as how much a component opposes that current.
+Voltage is energy per unit charge, not the amount of charge. Current is charge per second; resistance converts electrical energy into heat. Conventional current travels from positive to negative in an external DC circuit. A battery maintains a potential difference even with no load. A 12V label is nominal, not a promise of constant voltage.
 
-- **Voltage (V)** is measured *across* two points.
-- **Current (A)** is measured *through* a branch.
-- **Resistance (Ω)** is typically measured with a circuit **unpowered**.
-- **Power (W)** is the rate of energy transfer.
+## Lesson 1.2 — Applying the concepts
 
-For a simple resistive load:
+In a series circuit, current is identical everywhere and voltage drops sum to supply voltage. In parallel, branch voltages are equal and currents sum. AC reverses polarity periodically; DC need not be perfectly steady. PWM is switched DC, not necessarily AC.
 
-```text
-I = V / R
-P = V × I
-```
+## Lesson 1.3 — Worked example
 
-**Worked example:** A 12V supply and 6Ω resistance draw 2A and dissipate 24W. At 14V, the same ideal resistance draws 2.33A and dissipates 32.7W. Real LEDs and motors need different models.
+A 6Ω ideal load at 12V draws 2A and dissipates 24W. At 14V it draws 2.33A and 32.7W. Two 12Ω resistors in parallel equal 6Ω; in series they equal 24Ω. Do not build these high-power examples with ordinary small resistors.
 
-Try changing these inputs in the [interactive Ohm's law calculator](/tools).
+Use the [electrical toolbox](/tools) to explore the numbers.
 
-## 2. AC versus DC
+## Practical lab
 
-**DC** has a consistent polarity; the truck and motorcycle battery supply DC. **AC** periodically reverses polarity; the Sportster's stator generates AC which its regulator/rectifier converts to regulated DC for the battery and accessories. Your F-150 alternator also generates AC internally before rectifying it.
+**Materials:** 5V current-limited supply, two 1kΩ quarter-watt resistors, LED, 330Ω resistor, breadboard, DMM.
 
-A USB adapter usually uses a switching DC-DC converter, not a simple resistor, to change the vehicle's supply voltage to 5V or a negotiated higher USB-C voltage.
+Set the supply to 5V and 30mA maximum. With power off connect two 1kΩ resistors in series; power on and measure each drop (about 2.5V). Power off and rearrange in parallel; measure each branch voltage (about 5V). Calculate total current for each arrangement (2.5mA and 10mA). Finally build a 330Ω resistor and LED in series, observe polarity, and measure the resistor drop to infer current. Disconnect before rearranging.
 
-## 3. A complete circuit
+**Lab record:** Write down your prediction, actual result, measurement units, instrument or software used, and one explanation for any discrepancy. Repeat with one changed input and compare. Keep personal data local.
 
-```text
-Battery (+) → fuse → switch → load → return wire/chassis → battery (−)
-```
+## F-150 assignment
 
-Ground is the **return path**, not a sink that consumes electricity. A corroded chassis connection can add resistance and cause voltage drop when current flows.
+Measure resting battery voltage at accessible terminals, ignition off; identify battery, fuse box and chassis return conceptually. Compare courtesy lights as parallel loads.
 
-## 4. Series and parallel
+## Sportster assignment
 
-- In **series**, the same current flows through each component; voltage divides among them.
-- In **parallel**, each branch receives approximately the same source voltage; branch currents add.
+Measure resting battery voltage using safe access; sketch battery, switch, lamp and frame return. Compare the stator AC source with battery DC.
 
-Accessory loads are generally connected in parallel to the supply through properly designed, independently protected branches.
+## Knowledge check
 
-## 5. Lab — start on the bench
+<details>
+  <summary>1. Why does a disconnected battery still show voltage?</summary>
+  <p>Chemical energy maintains a potential difference even without current.</p>
+</details>
 
-**You need:** digital multimeter, a current-limited 5V bench supply (or a safe USB 5V power source), breadboard, LED, 330Ω resistor, jumpers.
+<details>
+  <summary>2. What happens to total current when equal resistors are placed in parallel?</summary>
+  <p>It increases because equivalent resistance falls.</p>
+</details>
 
-1. With power disconnected, assemble a 5V supply → 330Ω resistor → LED → return path.
-2. Confirm LED polarity and the supply's output voltage before energizing.
-3. Set the bench supply current limit low, e.g. 30mA, if the supply supports it.
-4. Energize. Measure voltage **across** the resistor and LED with DC volts mode.
-5. Divide resistor voltage by 330Ω to estimate series current.
-6. Disconnect the supply before reconfiguring any leads.
+<details>
+  <summary>3. Is 12V always exactly 12V?</summary>
+  <p>No, nominal system voltage varies with operating conditions.</p>
+</details>
 
-**Expected ideal estimate:** (5V − ~2V LED drop) / 330Ω ≈ 9mA. Actual results vary.
+## Completion criteria
 
-:::danger Multimeter safety
-Never use continuity or resistance mode on a powered circuit. Never connect a meter configured for **current** directly across a battery or supply. Check probe sockets before each measurement.
+- [ ] Explain the two core lessons without notes.
+- [ ] Reproduce the worked example and explain its assumptions.
+- [ ] Complete the practical lab or document why hardware compatibility prevents it.
+- [ ] Complete both vehicle assignments as observations or paper designs.
+- [ ] Answer all knowledge checks and correct any misunderstandings.
+
+:::warning Safety boundary
+Use current-limited bench circuits first. Verify actual vehicle wiring, component ratings and service procedures before installation. Never measure resistance on energized wiring, place a current-mode meter across a battery, connect vehicle voltage directly to GPIO, or probe SRS or live ignition high-voltage circuits.
 :::
 
-## 6. Vehicle observation lab
-
-With the vehicles stationary, ignition off, and meter correctly configured for DC voltage, compare battery terminal voltage on the F-150 and the Sportster. Record the readings and the time since either engine last ran. Do **not** assume a single resting voltage reading determines battery health.
-
-Use factory service information and proper access precautions. Leave vehicle wiring unchanged.
-
-## 7. Check your understanding
-
-<details>
-  <summary>1. A 12V resistor draws 2A. What is its resistance?</summary>
-  <p>6Ω, from R = V/I.</p>
-</details>
-
-<details>
-  <summary>2. Why does a bad ground cause a light to dim?</summary>
-  <p>A high-resistance return path wastes voltage when load current flows, leaving less voltage across the lamp.</p>
-</details>
-
-<details>
-  <summary>3. Is stator output AC or DC?</summary>
-  <p>AC; the regulator/rectifier produces regulated DC for the battery system.</p>
-</details>
-
-## Completion checklist
-
-- [ ] I can explain V, A, Ω, and W without confusing them.
-- [ ] I built a low-current series LED circuit.
-- [ ] I measured voltage across a component safely.
-- [ ] I measured and recorded both batteries' resting voltage.
-- [ ] I completed the questions above.
+[Return to curriculum](./overview.md)

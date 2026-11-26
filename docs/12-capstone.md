@@ -1,48 +1,69 @@
 ---
 title: "12 · Garage Intelligence Capstone"
 sidebar_position: 13
+slug: /12-capstone
 ---
 # Week 12 — Garage Intelligence Capstone
 
-**Time:** 3–5 hours · **Goal:** Combining safe sensors, Pi telemetry, local APIs, visualization, and optional local AI.
+**Estimated time:** 45 minutes reading · 120 minutes practical work · 45 minutes review. Estimates are for planning, not measured completion times.
 
-## What you'll learn
+## Lesson 12.1 — Core concepts
 
-Combining safe sensors, Pi telemetry, local APIs, visualization, and optional local AI. Begin by identifying the source, load, return path and protective devices in every circuit. Draw the circuit before touching any wires.
+Separate collectors, transport, ingestion, storage and visualization. Use a common event schema with vehicle ID, source, timestamp, units, quality and schema version. A missing value is not zero. Use local-first storage and retry with stable event IDs to avoid duplicate records.
 
-## Step-by-step bench lab
+## Lesson 12.2 — Applying the concepts
 
-1. Prepare a current-limited low-voltage power supply and verify its output with a meter.
-2. Draw the expected circuit, labeling source, load, return and measurement points.
-3. Build a local Node.js ingestion service, simulated vehicle feed and React dashboard.
-4. Record expected and actual observations. Explain any difference.
-5. De-energize, disconnect, and restore your workspace.
+A prototype should prove the data flow before real hardware integration. Use simulated truck OBD values and Sportster external sensor values. Keep the ingestion service on loopback initially, validate payloads, limit size, and never expose an unauthenticated telemetry API publicly. AI summaries must distinguish observed facts from guesses.
 
-## Compare the vehicles
+## Lesson 12.3 — Worked example
 
-Design separate F-150 OBD-II and Sportster external-sensor collectors, with shared data schema.
+At one 300-byte event per second, raw event data is roughly 25.9MB/day before overhead. A 10-second interval reduces that to about 2.6MB/day.
 
-The **2014 F-150** adds body control electronics and modern interfaces; the **1997 Sportster 883 Hugger** provides a more direct example of switches, wiring and charging components.
 
-## Questions to answer
 
-1. Where does the current return to the source?
-2. What would happen if the ground connection developed excessive resistance?
-3. Which measurement could confirm your theory without modifying factory wiring?
-4. What fuse, conductor and connector constraints would matter in a real installation?
+## Practical lab
 
-## Safety and specification checks
+**Materials:** Node.js 24, browser, editor, synthetic data; optional Pi after prior labs.
 
-:::warning
-Keep telemetry read-only until hardware and safety considerations are separately validated. Any model-year wiring color, connector pinout, or component rating must be verified using factory service information.
+Create a local JSON Lines fixture with alternating vehicle IDs and timestamps. Implement a Node HTTP server bound to 127.0.0.1 serving validated events at /events; reject invalid numeric values and unknown units. Build a browser table or React chart showing battery voltage by vehicle. Add stale-data indication and test missing/duplicate/out-of-order events. Export a private local report. Only later replace synthetic sources with verified read-only collectors.
+
+**Lab record:** Write down your prediction, actual result, measurement units, instrument or software used, and one explanation for any discrepancy. Repeat with one changed input and compare. Keep personal data local.
+
+## F-150 assignment
+
+Define a truck adapter for supported diagnostic PIDs and a separately protected battery measurement interface. Never send control commands.
+
+## Sportster assignment
+
+Define a Sportster adapter for external protected sensors; keep ignition and stator untouched. Share the same event schema without pretending both vehicles expose identical data.
+
+## Knowledge check
+
+<details>
+  <summary>1. Why use stable event IDs?</summary>
+  <p>To deduplicate retries.</p>
+</details>
+
+<details>
+  <summary>2. Why separate collectors from dashboard?</summary>
+  <p>Hardware changes need not change the visualization contract.</p>
+</details>
+
+<details>
+  <summary>3. What should AI do with missing measurements?</summary>
+  <p>State uncertainty rather than invent values.</p>
+</details>
+
+## Completion criteria
+
+- [ ] Explain the two core lessons without notes.
+- [ ] Reproduce the worked example and explain its assumptions.
+- [ ] Complete the practical lab or document why hardware compatibility prevents it.
+- [ ] Complete both vehicle assignments as observations or paper designs.
+- [ ] Answer all knowledge checks and correct any misunderstandings.
+
+:::warning Safety boundary
+Use current-limited bench circuits first. Verify actual vehicle wiring, component ratings and service procedures before installation. Never measure resistance on energized wiring, place a current-mode meter across a battery, connect vehicle voltage directly to GPIO, or probe SRS or live ignition high-voltage circuits.
 :::
 
-## Completion
-
-- [ ] I can explain the core concept in my own words.
-- [ ] I drew the relevant circuit.
-- [ ] I performed the safe bench lab.
-- [ ] I documented a comparison between the two vehicles.
-- [ ] I answered the four questions above.
-
-Next: consult the [full curriculum](./overview.md) and [Garage Labs](./labs/overview.md).
+[Return to curriculum](./overview.md)

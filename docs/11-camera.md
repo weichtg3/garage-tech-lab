@@ -1,48 +1,69 @@
 ---
 title: "11 · Camera & Edge AI"
 sidebar_position: 12
+slug: /11-camera
 ---
 # Week 11 — Camera & Edge AI
 
-**Time:** 3–5 hours · **Goal:** Camera interfaces, timestamps, motion events, image analysis and offline processing.
+**Estimated time:** 45 minutes reading · 100 minutes practical work · 35 minutes review. Estimates are for planning, not measured completion times.
 
-## What you'll learn
+## Lesson 11.1 — Core concepts
 
-Camera interfaces, timestamps, motion events, image analysis and offline processing. Begin by identifying the source, load, return path and protective devices in every circuit. Draw the circuit before touching any wires.
+Camera interfaces and drivers depend on Pi generation and OS. Modern Raspberry Pi OS often uses rpicam tools; older installations may use legacy utilities. Frame rate, resolution, compression and exposure affect storage and CPU load. Motion detection compares frames; object detection classifies/localizes objects and is not infallible.
 
-## Step-by-step bench lab
+## Lesson 11.2 — Applying the concepts
 
-1. Prepare a current-limited low-voltage power supply and verify its output with a meter.
-2. Draw the expected circuit, labeling source, load, return and measurement points.
-3. Capture a still image and tie it to a GPS timestamp using a local test log.
-4. Record expected and actual observations. Explain any difference.
-5. De-energize, disconnect, and restore your workspace.
+Timestamp images in UTC and use monotonic time for elapsed intervals. Associate GPS samples only within a defined freshness window. Use bounded storage, rotation, and local-only access. Older Pi models may be better suited to image capture with inference on a separate computer.
 
-## Compare the vehicles
+## Lesson 11.3 — Worked example
 
-Design an event recorder that does not distract a driver or obstruct visibility.
+A 4Mb/s video stream uses about 1.8GB/hour in decimal units before overhead. One 200kB image every 10 seconds uses about 72MB/hour.
 
-The **2014 F-150** adds body control electronics and modern interfaces; the **1997 Sportster 883 Hugger** provides a more direct example of switches, wiring and charging components.
 
-## Questions to answer
 
-1. Where does the current return to the source?
-2. What would happen if the ground connection developed excessive resistance?
-3. Which measurement could confirm your theory without modifying factory wiring?
-4. What fuse, conductor and connector constraints would matter in a real installation?
+## Practical lab
 
-## Safety and specification checks
+**Materials:** Pi and compatible camera, correct power supply, local test scene, storage, optional computer for processing.
 
-:::warning
-Use camera systems legally, mount securely, and avoid distracted operation. Any model-year wiring color, connector pinout, or component rating must be verified using factory service information.
+Identify OS and camera model; power off before checking ribbon connections. On compatible modern OS, try rpicam-hello --list-cameras and rpicam-still -o test.jpg; otherwise consult the installed camera stack. Capture a stationary test scene. Record UTC timestamp and synthetic GPS sample in a local JSON record. Calculate storage budget and implement a maximum file count in a disposable test directory. Test motion detection with a moving object in your own workspace.
+
+**Lab record:** Write down your prediction, actual result, measurement units, instrument or software used, and one explanation for any discrepancy. Repeat with one changed input and compare. Keep personal data local.
+
+## F-150 assignment
+
+Design an event recorder that does not obstruct visibility or distract; compare with the existing dashcam rather than replacing safety functions.
+
+## Sportster assignment
+
+Consider weather, vibration and secure mounting; keep experiments stationary until the hardware is suitable.
+
+## Knowledge check
+
+<details>
+  <summary>1. Why use a freshness window for GPS?</summary>
+  <p>A stale position may misrepresent the image location.</p>
+</details>
+
+<details>
+  <summary>2. What is edge AI?</summary>
+  <p>Inference near the data source rather than necessarily in a cloud service.</p>
+</details>
+
+<details>
+  <summary>3. Why cap storage?</summary>
+  <p>To prevent disk exhaustion and recorder failure.</p>
+</details>
+
+## Completion criteria
+
+- [ ] Explain the two core lessons without notes.
+- [ ] Reproduce the worked example and explain its assumptions.
+- [ ] Complete the practical lab or document why hardware compatibility prevents it.
+- [ ] Complete both vehicle assignments as observations or paper designs.
+- [ ] Answer all knowledge checks and correct any misunderstandings.
+
+:::warning Safety boundary
+Use current-limited bench circuits first. Verify actual vehicle wiring, component ratings and service procedures before installation. Never measure resistance on energized wiring, place a current-mode meter across a battery, connect vehicle voltage directly to GPIO, or probe SRS or live ignition high-voltage circuits.
 :::
 
-## Completion
-
-- [ ] I can explain the core concept in my own words.
-- [ ] I drew the relevant circuit.
-- [ ] I performed the safe bench lab.
-- [ ] I documented a comparison between the two vehicles.
-- [ ] I answered the four questions above.
-
-Next: consult the [full curriculum](./overview.md) and [Garage Labs](./labs/overview.md).
+[Return to curriculum](./overview.md)

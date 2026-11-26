@@ -1,48 +1,74 @@
 ---
 title: "03 · Grounds, Voltage Drop & Faults"
 sidebar_position: 4
+slug: /03-grounds
 ---
 # Week 3 — Grounds, Voltage Drop & Faults
 
-**Time:** 3–5 hours · **Goal:** How chassis returns, loose contacts, corrosion and open circuits behave under load.
+**Estimated time:** 45 minutes reading · 90 minutes practical work · 35 minutes review. Estimates are for planning, not measured completion times.
 
-## What you'll learn
+## Lesson 3.1 — Core concepts
 
-How chassis returns, loose contacts, corrosion and open circuits behave under load. Begin by identifying the source, load, return path and protective devices in every circuit. Draw the circuit before touching any wires.
+Ground is a chosen reference and a return path. A chassis bond connects metal to battery negative; signal ground may be separate and sensitive to noise. An open circuit interrupts current, a short creates an unintended low-resistance path, and a high-resistance connection wastes voltage under load.
 
-## Step-by-step bench lab
+## Lesson 3.2 — Applying the concepts
 
-1. Prepare a current-limited low-voltage power supply and verify its output with a meter.
-2. Draw the expected circuit, labeling source, load, return and measurement points.
-3. Add a removable resistor in series with a low-current lamp to simulate a bad ground; compare voltage drop.
-4. Record expected and actual observations. Explain any difference.
-5. De-energize, disconnect, and restore your workspace.
+Voltage drop is measured across a segment while current flows. Positive-side and return-side drops add to the difference between supply and load voltage. A high-impedance meter can display near supply voltage through a poor connection when the load is disconnected. Do not use a random chassis bolt as a verified ground.
 
-## Compare the vehicles
+## Lesson 3.3 — Worked example
 
-Inspect documented, accessible grounding points without disassembly or modifying harnesses.
+At 5A, 0.2Ω of unwanted resistance drops 1V and dissipates 5W. A 5V bench circuit with a 1kΩ load and 1kΩ fault resistor has 2.5V across each and 2.5mA current.
 
-The **2014 F-150** adds body control electronics and modern interfaces; the **1997 Sportster 883 Hugger** provides a more direct example of switches, wiring and charging components.
+Use the [electrical toolbox](/tools) to explore the numbers.
 
-## Questions to answer
+## Practical lab
 
-1. Where does the current return to the source?
-2. What would happen if the ground connection developed excessive resistance?
-3. Which measurement could confirm your theory without modifying factory wiring?
-4. What fuse, conductor and connector constraints would matter in a real installation?
+**Materials:** 5V current-limited supply, two 1kΩ resistors, jumper, DMM.
 
-## Safety and specification checks
+Build a 1kΩ load across 5V with a direct return. Measure source and load voltage. Power off, add the second 1kΩ resistor in the return. Power on and measure across the fault resistor and load. Record node voltages relative to supply negative. Power off, remove the return entirely and predict the open-circuit reading before testing. Restore the original circuit.
 
-:::warning
-Disconnect before resistance measurements; keep the experiment on a current-limited bench supply. Any model-year wiring color, connector pinout, or component rating must be verified using factory service information.
+**Lab record:** Write down your prediction, actual result, measurement units, instrument or software used, and one explanation for any discrepancy. Repeat with one changed input and compare. Keep personal data local.
+
+## F-150 assignment
+
+Locate documented chassis and engine bonds visually. Sketch a courtesy-light fault tree: source, fuse, controller, load, return. Do not probe module grounds or SRS wiring.
+
+## Sportster assignment
+
+Inspect accessible battery-negative cable and frame bonds for corrosion or loose hardware without disturbing them. Sketch how a poor shared return can affect multiple lamps.
+
+## Knowledge check
+
+<details>
+  <summary>1. Why test voltage drop under load?</summary>
+  <p>Resistance produces a measurable drop only when current flows.</p>
+</details>
+
+<details>
+  <summary>2. Where does a return-side drop appear?</summary>
+  <p>Between load return and source negative.</p>
+</details>
+
+<details>
+  <summary>3. What distinguishes a short from an open?</summary>
+  <p>A short is an unintended low-resistance path</p>
+</details>
+
+<details>
+  <summary>4.  an open interrupts the path.</summary>
+  <p>undefined</p>
+</details>
+
+## Completion criteria
+
+- [ ] Explain the two core lessons without notes.
+- [ ] Reproduce the worked example and explain its assumptions.
+- [ ] Complete the practical lab or document why hardware compatibility prevents it.
+- [ ] Complete both vehicle assignments as observations or paper designs.
+- [ ] Answer all knowledge checks and correct any misunderstandings.
+
+:::warning Safety boundary
+Use current-limited bench circuits first. Verify actual vehicle wiring, component ratings and service procedures before installation. Never measure resistance on energized wiring, place a current-mode meter across a battery, connect vehicle voltage directly to GPIO, or probe SRS or live ignition high-voltage circuits.
 :::
 
-## Completion
-
-- [ ] I can explain the core concept in my own words.
-- [ ] I drew the relevant circuit.
-- [ ] I performed the safe bench lab.
-- [ ] I documented a comparison between the two vehicles.
-- [ ] I answered the four questions above.
-
-Next: consult the [full curriculum](./overview.md) and [Garage Labs](./labs/overview.md).
+[Return to curriculum](./overview.md)

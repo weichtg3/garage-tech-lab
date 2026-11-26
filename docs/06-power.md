@@ -1,48 +1,69 @@
 ---
 title: "06 · USB & DC-DC Power Conversion"
 sidebar_position: 7
+slug: /06-power
 ---
 # Week 6 — USB & DC-DC Power Conversion
 
-**Time:** 3–5 hours · **Goal:** Buck/boost topologies, efficiency, USB PD negotiation and automotive transients.
+**Estimated time:** 50 minutes reading · 90 minutes practical work · 35 minutes review. Estimates are for planning, not measured completion times.
 
-## What you'll learn
+## Lesson 6.1 — Core concepts
 
-Buck/boost topologies, efficiency, USB PD negotiation and automotive transients. Begin by identifying the source, load, return path and protective devices in every circuit. Draw the circuit before touching any wires.
+A buck converter reduces voltage using switched energy storage; a boost converter raises it. A buck-boost handles input above or below the target. A linear regulator dissipates approximately (Vin − Vout) × I as heat. Switching converters have losses, ripple and current limits.
 
-## Step-by-step bench lab
+## Lesson 6.2 — Applying the concepts
 
-1. Prepare a current-limited low-voltage power supply and verify its output with a meter.
-2. Draw the expected circuit, labeling source, load, return and measurement points.
-3. Power a 5V USB device from a rated DC-DC converter; measure loaded input and output.
-4. Record expected and actual observations. Explain any difference.
-5. De-energize, disconnect, and restore your workspace.
+USB voltage is normally 5V until supported negotiation requests another profile. A charger advertises capability; a device draws what it needs within the negotiated limits. Automotive supplies face cranking dips, load-dump transients and reverse polarity. Choose automotive-rated protection, not merely a module marked 12V.
 
-## Compare the vehicles
+## Lesson 6.3 — Worked example
 
-Plan stable power for a dashcam or Pi, including shutdown behavior.
+A 5V 2A USB load consumes 10W. At 90% efficiency, 12V input draws 10/(0.9×12)=0.93A. A linear regulator delivering 5V at 1A from 12V would dissipate 7W.
 
-The **2014 F-150** adds body control electronics and modern interfaces; the **1997 Sportster 883 Hugger** provides a more direct example of switches, wiring and charging components.
+Use the [electrical toolbox](/tools) to explore the numbers.
 
-## Questions to answer
+## Practical lab
 
-1. Where does the current return to the source?
-2. What would happen if the ground connection developed excessive resistance?
-3. Which measurement could confirm your theory without modifying factory wiring?
-4. What fuse, conductor and connector constraints would matter in a real installation?
+**Materials:** Current-limited bench supply, documented 12V-input USB adapter, USB power meter, compatible low-power USB load.
 
-## Safety and specification checks
+Set supply within adapter rating and a conservative current limit. Connect adapter with power off, verify polarity, then energize. Measure unloaded output using USB meter. Attach a small rated load and record input voltage/current from supply display and output voltage/current from USB meter. Calculate efficiency. Repeat at a second supported input voltage. Stop if overheating or unstable output occurs.
 
-:::warning
-An automotive supply can experience spikes and reverse polarity; generic hobby modules are not automatically vehicle-safe. Any model-year wiring color, connector pinout, or component rating must be verified using factory service information.
+**Lab record:** Write down your prediction, actual result, measurement units, instrument or software used, and one explanation for any discrepancy. Repeat with one changed input and compare. Keep personal data local.
+
+## F-150 assignment
+
+Compare dashcam hardwire converter input and camera output requirements; design ignition sensing and battery cutoff on paper.
+
+## Sportster assignment
+
+Compare CarPlay constant and switched feeds with USB charging. Estimate standby energy and consider a protected shutdown strategy for a Pi.
+
+## Knowledge check
+
+<details>
+  <summary>1. Does a 2A USB output imply 2A at 12V input?</summary>
+  <p>No, input current depends on power, voltage and efficiency.</p>
+</details>
+
+<details>
+  <summary>2. Why is a generic buck board not automatically automotive-safe?</summary>
+  <p>It may lack transient and reverse-polarity protection.</p>
+</details>
+
+<details>
+  <summary>3. What does USB PD negotiate?</summary>
+  <p>A supported power contract including voltage and current limits.</p>
+</details>
+
+## Completion criteria
+
+- [ ] Explain the two core lessons without notes.
+- [ ] Reproduce the worked example and explain its assumptions.
+- [ ] Complete the practical lab or document why hardware compatibility prevents it.
+- [ ] Complete both vehicle assignments as observations or paper designs.
+- [ ] Answer all knowledge checks and correct any misunderstandings.
+
+:::warning Safety boundary
+Use current-limited bench circuits first. Verify actual vehicle wiring, component ratings and service procedures before installation. Never measure resistance on energized wiring, place a current-mode meter across a battery, connect vehicle voltage directly to GPIO, or probe SRS or live ignition high-voltage circuits.
 :::
 
-## Completion
-
-- [ ] I can explain the core concept in my own words.
-- [ ] I drew the relevant circuit.
-- [ ] I performed the safe bench lab.
-- [ ] I documented a comparison between the two vehicles.
-- [ ] I answered the four questions above.
-
-Next: consult the [full curriculum](./overview.md) and [Garage Labs](./labs/overview.md).
+[Return to curriculum](./overview.md)

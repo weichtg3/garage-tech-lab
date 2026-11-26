@@ -1,48 +1,69 @@
 ---
 title: "07 · Battery & Charging Systems"
 sidebar_position: 8
+slug: /07-charging
 ---
 # Week 7 — Battery & Charging Systems
 
-**Time:** 3–5 hours · **Goal:** Battery state, alternators, stators, rectifiers, regulators, charging and parasitic draw.
+**Estimated time:** 55 minutes reading · 85 minutes practical work · 40 minutes review. Estimates are for planning, not measured completion times.
 
-## What you'll learn
+## Lesson 7.1 — Core concepts
 
-Battery state, alternators, stators, rectifiers, regulators, charging and parasitic draw. Begin by identifying the source, load, return path and protective devices in every circuit. Draw the circuit before touching any wires.
+A battery stores chemical energy; terminal voltage depends on chemistry, temperature, recent charging and load. Amp-hours measure charge capacity under specified conditions, not guaranteed usable capacity. Internal resistance causes voltage sag. State of charge and state of health are different.
 
-## Step-by-step bench lab
+## Lesson 7.2 — Applying the concepts
 
-1. Prepare a current-limited low-voltage power supply and verify its output with a meter.
-2. Draw the expected circuit, labeling source, load, return and measurement points.
-3. Measure a low-voltage DC supply with changing load to observe voltage sag.
-4. Record expected and actual observations. Explain any difference.
-5. De-energize, disconnect, and restore your workspace.
+An alternator produces AC internally, rectifies it and regulates DC output; the Sportster uses a stator and regulator/rectifier architecture. Charging output depends on speed, temperature and load. Parasitic draw is current after shutdown and sleep; modern modules can wake periodically. A single voltage reading is not a diagnosis.
 
-## Compare the vehicles
+## Lesson 7.3 — Worked example
 
-Compare the F-150 alternator/rectifier with the Sportster's stator and regulator/rectifier.
+A constant 30mA draw consumes 0.72Ah/day or 5.04Ah/week. Two 55W lamps consume nominally 110W or 9.17A at 12V; actual available charging headroom must be measured or verified.
 
-The **2014 F-150** adds body control electronics and modern interfaces; the **1997 Sportster 883 Hugger** provides a more direct example of switches, wiring and charging components.
+Use the [electrical toolbox](/tools) to explore the numbers.
 
-## Questions to answer
+## Practical lab
 
-1. Where does the current return to the source?
-2. What would happen if the ground connection developed excessive resistance?
-3. Which measurement could confirm your theory without modifying factory wiring?
-4. What fuse, conductor and connector constraints would matter in a real installation?
+**Materials:** 5V current-limited supply, 100Ω and 1kΩ resistors rated at least 0.5W, DMM.
 
-## Safety and specification checks
+Use the 100Ω resistor as a simulated internal resistance in series with the 1kΩ load. Set 5V and 30mA limit. Measure load voltage and source voltage. Power off, add another 1kΩ load in parallel; repeat. Calculate expected sag from the voltage divider. This is a model, not a battery test. Do not intentionally discharge or short a vehicle battery.
 
-:::warning
-Avoid live high-current cables, moving belts, hot exhaust and ignition high-voltage systems. Any model-year wiring color, connector pinout, or component rating must be verified using factory service information.
+**Lab record:** Write down your prediction, actual result, measurement units, instrument or software used, and one explanation for any discrepancy. Repeat with one changed input and compare. Keep personal data local.
+
+## F-150 assignment
+
+Record resting battery voltage at safe accessible terminals, ignition off, and time since shutdown. Review charging and sleep procedures in the correct service information before any running or parasitic-draw test.
+
+## Sportster assignment
+
+Draw stator → regulator/rectifier → battery → loads. Inventory lamp and accessory wattages; do not disconnect the battery with engine running or probe live stator/ignition wiring without the factory procedure.
+
+## Knowledge check
+
+<details>
+  <summary>1. Does a healthy resting voltage prove capacity?</summary>
+  <p>No, load performance and other tests are needed.</p>
+</details>
+
+<details>
+  <summary>2. What does a rectifier do?</summary>
+  <p>Converts alternating current to unidirectional current.</p>
+</details>
+
+<details>
+  <summary>3. How much charge does 50mA consume in 24h?</summary>
+  <p>1.2Ah.</p>
+</details>
+
+## Completion criteria
+
+- [ ] Explain the two core lessons without notes.
+- [ ] Reproduce the worked example and explain its assumptions.
+- [ ] Complete the practical lab or document why hardware compatibility prevents it.
+- [ ] Complete both vehicle assignments as observations or paper designs.
+- [ ] Answer all knowledge checks and correct any misunderstandings.
+
+:::warning Safety boundary
+Use current-limited bench circuits first. Verify actual vehicle wiring, component ratings and service procedures before installation. Never measure resistance on energized wiring, place a current-mode meter across a battery, connect vehicle voltage directly to GPIO, or probe SRS or live ignition high-voltage circuits.
 :::
 
-## Completion
-
-- [ ] I can explain the core concept in my own words.
-- [ ] I drew the relevant circuit.
-- [ ] I performed the safe bench lab.
-- [ ] I documented a comparison between the two vehicles.
-- [ ] I answered the four questions above.
-
-Next: consult the [full curriculum](./overview.md) and [Garage Labs](./labs/overview.md).
+[Return to curriculum](./overview.md)
