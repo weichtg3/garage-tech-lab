@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 const cards=[
-['⚡','Electrical Fundamentals','Start with voltage, current, resistance, multimeters, grounding and safe diagnostics.','/learn/01-electrical-fundamentals/'],
+['⚡','Electrical Fundamentals','Start with voltage, current, resistance, multimeters, grounding and safe diagnostics.','/learn/01-electrical-fundamentals'],
 ['🚙','2014 F-150 Lab','Explore modern accessory power, BCM-controlled lighting, OBD-II and vehicle networks.','/learn/labs/f150/'],
 ['🏍️','1997 Sportster Lab','Understand traditional circuits, the stator/regulator and accessory harness design.','/learn/labs/sportster/'],
 ['📡','Raspberry Pi Lab','Build GPS logs, camera experiments, sensor interfaces and telemetry.','/learn/labs/raspberry-pi/'],
