@@ -1,0 +1,19 @@
+:root { --ifm-color-primary:#12857a;--ifm-color-primary-dark:#10796f;--ifm-color-primary-darker:#0c6a62;--ifm-color-primary-darkest:#08574f;--ifm-color-primary-light:#1a9d90;--ifm-color-primary-lighter:#27aa9d;--ifm-color-primary-lightest:#45c2b5; --ifm-font-family-base:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+[data-theme='dark'] { --ifm-background-color:#101820;--ifm-background-surface-color:#192631;--ifm-color-primary:#49d4bd;--ifm-color-primary-dark:#29c8ae;--ifm-color-primary-darker:#24b99f;--ifm-color-primary-darkest:#1a917f;--ifm-color-primary-light:#70dfca;--ifm-color-primary-lighter:#8cead7;--ifm-color-primary-lightest:#b1f3e6; }
+.hero-lab{background:linear-gradient(135deg,#0e1e27 0%,#16363d 55%,#124d47 100%);color:#f5faf9;padding:5rem 0 4rem}
+.hero-lab h1{font-size:clamp(2.5rem,6vw,4.4rem);max-width:900px;line-height:1.05;letter-spacing:-.045em}
+.hero-lab p{font-size:1.15rem;max-width:700px;color:#c7dedb}
+.hero-tag{display:inline-block;font-size:.75rem;letter-spacing:.13em;font-weight:700;border:1px solid #6bb7aa;border-radius:999px;padding:.5rem .85rem;margin-bottom:1.2rem}
+.lab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;padding:2.8rem 0}
+.lab-card{display:block;border:1px solid var(--ifm-color-emphasis-300);border-radius:16px;padding:1.5rem;background:var(--ifm-background-surface-color);color:var(--ifm-font-color-base)}
+.lab-card:hover{text-decoration:none;box-shadow:0 12px 34px #0002;transform:translateY(-2px);color:var(--ifm-font-color-base)}
+.lab-card h3{margin:0 0 .7rem}
+.lab-eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ifm-color-primary);font-weight:700}
+.lab-cta{display:inline-block;background:#5be0c8;color:#102a2d!important;font-weight:800;border-radius:9px;padding:.85rem 1.25rem;margin:1.5rem .7rem 0 0;text-decoration:none!important}
+.lab-cta.alt{background:transparent;border:1px solid #8dcfc5;color:#e8fffa!important}
+.calc-control{margin:1rem 0}
+.calc-control label{display:block;margin-bottom:.35rem;font-weight:600}
+.calc-control input{width:100%}
+.calc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:1rem;margin:1.6rem 0}
+.calc-stat{padding:1.1rem;background:var(--ifm-background-surface-color);border:1px solid var(--ifm-color-emphasis-300);border-radius:12px}
+.calc-stat strong{font-size:1.9rem;display:block}
