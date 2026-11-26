@@ -51,12 +51,7 @@ Inspect accessible battery-negative cable and frame bonds for corrosion or loose
 
 <details>
   <summary>3. What distinguishes a short from an open?</summary>
-  <p>A short is an unintended low-resistance path</p>
-</details>
-
-<details>
-  <summary>4.  an open interrupts the path.</summary>
-  <p>undefined</p>
+  <p>A short is an unintended low-resistance path; an open interrupts the path.</p>
 </details>
 
 ## Completion criteria
