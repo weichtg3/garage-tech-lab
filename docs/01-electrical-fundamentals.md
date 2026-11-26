@@ -72,22 +72,19 @@ Use factory service information and proper access precautions. Leave vehicle wir
 
 ## 7. Check your understanding
 
-<details><summary>1. A 12V resistor draws 2A. What is its resistance?</summary>
-
-6Ω, from R = V/I.
-
+<details>
+  <summary>1. A 12V resistor draws 2A. What is its resistance?</summary>
+  <p>6Ω, from R = V/I.</p>
 </details>
 
-<details><summary>2. Why does a bad ground cause a light to dim?</summary>
-
-A high-resistance return path wastes voltage when load current flows, leaving less voltage across the lamp.
-
+<details>
+  <summary>2. Why does a bad ground cause a light to dim?</summary>
+  <p>A high-resistance return path wastes voltage when load current flows, leaving less voltage across the lamp.</p>
 </details>
 
-<details><summary>3. Is stator output AC or DC?</summary>
-
-AC; the regulator/rectifier produces regulated DC for the battery system.
-
+<details>
+  <summary>3. Is stator output AC or DC?</summary>
+  <p>AC; the regulator/rectifier produces regulated DC for the battery system.</p>
 </details>
 
 ## Completion checklist
